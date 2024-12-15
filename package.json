@@ -1,6 +1,6 @@
 {
   "name": "tolk-codegen",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "dist/index.js",
   "repository": "https://github.com/panarama360/tolk-codegen",
@@ -30,5 +30,6 @@
       "transform": {
         "^.+.tsx?$": ["ts-jest",{}]
       }
-    }
+  },
+  "keywords": ["ton", "tolk", "decorators", "typescript", "telegram", "contract", "blockchain", "tvm", "func", "generator", "ts"]
 }
