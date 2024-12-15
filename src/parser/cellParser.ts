@@ -4,7 +4,6 @@ import { ClassConstructor } from '../type';
 import { Field, travel } from '../travel';
 import { createDictValue } from '../createDictValue';
 
-// createDictValue()
 const parser: Record<DataType, (slice: Slice, field: Field) => void> = {
     [DataType.SLICE]: (slice: Slice, field: Field) => {
         if(field.size){
@@ -33,16 +32,6 @@ const parser: Record<DataType, (slice: Slice, field: Field) => void> = {
             return parseCell(slice.loadRef(), field.type);
         }
     },
-    // [DataType.MAYBE_REF]: (slice: Slice, field: Field) => {
-    //     const ref = slice.loadMaybeRef()
-    //     if(field.type == Cell){
-    //         return ref;
-    //     }else if(ref){
-    //         return parseCell(ref, field.type);
-    //     }else {
-    //         return ref;
-    //     }
-    // },
     [DataType.ADDRESS]: (slice: Slice, field: Field) => {
         return slice.loadMaybeAddress();
     },

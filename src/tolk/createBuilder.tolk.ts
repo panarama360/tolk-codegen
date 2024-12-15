@@ -10,7 +10,7 @@ import { DataType } from '../decorators';
 
 
 export function createBuilderTolk<T>(type: ClassConstructor<T>, exclude?: (keyof T)[]){
-    const template = fs.readFileSync('./tools/templates/builder.template.ttolk').toString('ascii');
+    const template = fs.readFileSync(__dirname + '/../templates/builder.template.ttolk').toString('ascii');
 
     const storeDeclaration: string[] = [];
     const paramsDeclaration: string[] = [];

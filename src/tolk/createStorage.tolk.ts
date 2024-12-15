@@ -4,7 +4,7 @@ import { mapBuildTypeToTolkBuilderFunction, mapBuildTypeToTolkSliceFunction, map
 import { travel } from '../travel';
 
 export function createStorageTolk<T>(type: ClassConstructor<T>){
-    const template = fs.readFileSync('./tools/templates/storage.template.ttolk').toString('ascii');
+    const template = fs.readFileSync(__dirname + '/../templates/storage.template.ttolk').toString('ascii');
     const globalVarDeclaration: string[] = [];
     const saveDeclarationFunction: string[] = [];
     const loadDeclarationFunction: string[] = [];

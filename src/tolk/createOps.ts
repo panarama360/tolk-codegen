@@ -2,9 +2,15 @@ import { ClassConstructor } from '../type';
 import fs from 'node:fs';
 import { MetadataKey } from '../decorators';
 
-export async function createOps(
+export async function createOpsFile(
     types: Array<ClassConstructor<any>>,
     file: string,
+){
+    await fs.promises.writeFile(file, createOps(types));
+}
+
+export function createOps(
+    types: Array<ClassConstructor<any>>
 ){
     const ops: string[] = types.map(value => {
         const op: bigint = Reflect.getMetadata(MetadataKey.OP, value.prototype);
@@ -15,5 +21,5 @@ export async function createOps(
         }
 
     })
-    await fs.promises.writeFile(file, ops.join("\n"));
+    return ops.join("\n")
 }

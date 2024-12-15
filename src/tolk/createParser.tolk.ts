@@ -5,7 +5,7 @@ import { travel } from '../travel';
 import { DataType } from '../decorators';
 
 export function createParserTolk<T>(type: ClassConstructor<T>, exclude?: (keyof T)[]) {
-    const template = fs.readFileSync('./tools/templates/parser.template.ttolk').toString('ascii');
+    const template = fs.readFileSync(__dirname + '/../templates/parser.template.ttolk').toString('ascii');
 
     const returnDeclaration: string[] = [];
     const loadDeclarations: string[] = [];
