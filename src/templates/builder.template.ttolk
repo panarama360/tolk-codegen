@@ -1,0 +1,6 @@
+@inline // buildCell{{name}}({{params}});
+fun buildCell{{name}}({{params}}): cell{
+    var data = beginCell();
+    {{storeDeclaration}}
+    return data.endCell();
+}

@@ -1,0 +1,16 @@
+{{globalVarSection}}
+
+@inline
+fun saveStorage(){
+    setContractData(
+            beginCell()
+                {{saveDeclaration}}
+                .endCell()
+        );
+}
+
+@inline
+fun loadStorage(){
+    var sc = getContractData().beginParse();
+    {{loadDeclaration}}
+}

@@ -1,0 +1,9 @@
+@inline // var ({{paramsName}}) = parseCell{{name}}(data);
+fun parseCell{{name}}(data: cell): {{returnType}}{
+    return parseSlice{{name}}(data.beginParse());
+}
+
+@inline // var ({{paramsName}}) = parseSlice{{name}}(sc);
+fun parseSlice{{name}}(sc: slice): {{returnType}}{
+    return {{loadDeclaration}};
+}
