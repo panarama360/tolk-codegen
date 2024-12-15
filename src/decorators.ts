@@ -1,6 +1,8 @@
 import "reflect-metadata";
 import * as crc32 from 'crc-32';
 import { BaseMessage } from './base/BaseMessage';
+import {DictionaryKey, DictionaryKeyTypes, DictionaryValue} from "@ton/core";
+import {Maybe} from "@ton/core/dist/utils/maybe";
 
 export enum DataType{
     INT = 'int',
@@ -108,10 +110,14 @@ export function MayBe(){
 
 export function DefineMessage(op?: bigint){
     return function (constructor: Function) {
-        Reflect.defineMetadata(MetadataKey.OP, op || calculateRequestOpcode(constructor.name), constructor.prototype);
+        Reflect.defineMetadata(MetadataKey.OP, op || (BigInt(crc32.str(constructor.name)) & BigInt(0x7fffffff)), constructor.prototype);
     }
 }
 
-function calculateRequestOpcode(str: string): bigint {
-    return (BigInt(crc32.str(str)) & BigInt(0x7fffffff));
+export function StoreDict<K extends DictionaryKeyTypes, V>(key?: Maybe<DictionaryKey<K>>, value?: Maybe<DictionaryValue<V>>){
+    return function(prototype: any, propertyKey: string) {
+        Reflect.defineMetadata(MetadataKey.DATATYPE, DataType.DICT, prototype, propertyKey);
+        Reflect.defineMetadata(MetadataKey.DICT, {key, value}, prototype, propertyKey);
+        storeProperty(propertyKey, prototype);
+    }
 }
